@@ -30,6 +30,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
                     // 添加访问信息
                     visitMap.set(newWord, path + 1);
                     queue.push(newWord);
+                    // console.log(newWord, path + 1);
                 }
             }
         }
