@@ -21,8 +21,7 @@ const join = (u, v) => {
 
 // 判断 u 和 v是否找到同一个根
 const same = (u, v) => {
-    u = find(u); 
-    
+    u = find(u);
     v = find(v);
     return u == v;
 };
