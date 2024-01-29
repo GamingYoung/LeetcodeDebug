@@ -11,6 +11,7 @@ const find = u => {
     return u == father[u] ? u : father[u] = find(father[u]);
 };
 
+
 // 将v->u 这条边加入并查集
 const join = (u, v) => {
     u = find(u);
@@ -18,6 +19,7 @@ const join = (u, v) => {
     if(u == v) return;
     father[v] = u;
 };
+
 
 // 判断 u 和 v是否找到同一个根
 const same = (u, v) => {
