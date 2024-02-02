@@ -4,27 +4,27 @@
  */
 var lengthOfLongestSubstring = function(s) {
     const hash = new Array(26).fill(0);
+    let front = 0;
     let rear = 0;
-    let front = 1;
+    let max = 0;
     const base = 'a'.charCodeAt(0);
-    let max = 1;
-    hash[s[0].charCodeAt(0) - base] = 1;
-    for (; front < s.length; front++) {
-        if(!hash[s[front].charCodeAt(0) - base]) {
-            max = Math.max(front - rear, max);
-            hash[s[front].charCodeAt(0) - base] = 1;
+    for (let i = 0; i < s.length; i++) {
+        const temp = hash[s[i].charCodeAt(0) - base];
+        if (temp === 0) {
+
+            hash[s[i].charCodeAt(0) - base] = 1;
         } else {
-            for (; rear < front; rear++) {
-                const temp = s[front];
-                if (s[rear] === temp) {
-                    hash[temp.charCodeAt(0) - base] = 0;
-                    rear += 1;
-                    break;
-                }
+            while (hash[s[rear].charCodeAt(0) - base] != temp) {
+                hash[s[rear].charCodeAt(0) - base] = 0;
+                rear ++;
+                
             }
+            rear ++;
         }
+        front += 1;
+        max = Math.max(max, front - rear);
     }
-    return max + 1; 
+    return max + 1;
 };
 
 lengthOfLongestSubstring("pwwkew");
