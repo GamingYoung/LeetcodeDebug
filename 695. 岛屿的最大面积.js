@@ -3,31 +3,35 @@
  * @return {number}
  */
 var maxAreaOfIsland = function(grid) {
-    const dir = [[0, 1], [1, 0], [0, -1], [-1, 0]];
     let res = 0;
-    const bfs = function(i, j) {
-        let area = 0;
-        const queue = [[i, j]];
-        while (queue.length != 0) {
-            const pos = queue.shift();
-            for (let k = 0; k < dir.length; k++) {
-                const nextX = pos[0] + dir[k][0];
-                const nextY = pos[1] + dir[k][1];
-                if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) continue;
-                if (grid[nextX][nextY] === 1) {
-                    queue.push([nextX, nextY]);
-                    grid[nextX][nextY] = 0;
-                    area += 1;
+    const dir = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    const bfs = function(pos) {
+        const queue = [[...pos]];
+        while (queue.length) {
+            const len = queue.length;
+            let count = 0;
+            for (let i = 0; i < len; i++) {
+                const path = queue.shift();
+                count += 1;
+                for (let j = 0; j < dir.length; j++) {
+                    const m = path[0] + dir[j][0];
+                    const n = path[1] + dir[j][1];
+                    if (m >= 0 && n >= 0 && m < grid.length && n < grid[0].length) {
+                        if (grid[m][n] === 1) {
+                            queue.push([m , n]);
+                            grid[m][n] = 0;
+                        }
+                    }
                 }
             }
         }
-        return area === 0 ? 1 : area;
+        return count;
     }
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === 1) {
-                let temp = bfs(i, j);
-                res = res > temp ? res : temp;
+                grid[i][j] = 0;
+                res = Math.max(bfs([i, j]), res);
             }
         }
     }
