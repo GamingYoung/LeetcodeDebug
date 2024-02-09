@@ -17,15 +17,9 @@ var lowestCommonAncestor = function(root, p, q) {
         if (!node) return 0;
         const left = postOrder(node.left, p, q);
         const right = postOrder(node.right, p, q);
-        if ((node.val === p.val || node.val === q.val) && (left || right)) {
+        if (((node.val === p.val || node.val === q.val) && (left || right)) || (right && left)) {
             res = node;
         }      
-        else if (left === 1 && right === 1) {
-            res = node;
-        }
-        // if ((lson && rson) || ((node.val === p.val || node.val === q.val) && (lson || rson))) {
-        //     res = node;
-        // } 
         return left || right || (node.val === p.val || node.val === q.val);
     }
     postOrder(root, p, q);
