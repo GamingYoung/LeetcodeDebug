@@ -11,17 +11,27 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    // 复杂递归写法
-    const order = function(left, right) {
-        let l = false;
-        let r = false;
-        if (left.left && right.right) l = order(left.left, right.right);
-        else if (!left.left && !right.right) l = true;
-        if (left.right && right.left) r = order(left.right, right.left);
-        else if (!left.right && !right.left) r = true;
-        if (left.val === right.val && l && r) return true;
-        else return false;
+    // // 复杂递归写法
+    // const order = function(left, right) {
+    //     let l = false;
+    //     let r = false;
+    //     if (left.left && right.right) l = order(left.left, right.right);
+    //     else if (!left.left && !right.right) l = true;
+    //     if (left.right && right.left) r = order(left.right, right.left);
+    //     else if (!left.right && !right.left) r = true;
+    //     if (left.val === right.val && l && r) return true;
+    //     else return false;
+    // }
+    // return order(root, root);
+    const check = (p,q) => {
+        if (!p && !q) {
+            return true;
+        }
+        if (!p || !q) {
+            return false;
+        }
+        return p.val === q.val && check(p.left, q.right) && check(p.right, q.left)
     }
-    return order(root, root);
+    return check(root, root)
 };
 
