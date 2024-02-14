@@ -11,6 +11,7 @@
  * @return {number[][]}
  */
 var verticalTraversal = function(root) {
+    // 先遍历后排序
     const cur = [];
     const inOrder = function(node, row, col) {
         cur.push([node.val, row, col]);
@@ -24,7 +25,7 @@ var verticalTraversal = function(root) {
                 return a[0] - b[0];
             } else {
                 return a[1] - b[1];
-            }
+            }            
         } else {
             return a[2] - b[2];
         }
