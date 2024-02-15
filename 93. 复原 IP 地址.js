@@ -1,5 +1,5 @@
 /**
- * @param {string} s
+ * @param {string} 
  * @return {string[]}
  */
 var restoreIpAddresses = function(s) {
@@ -15,6 +15,9 @@ var restoreIpAddresses = function(s) {
         }
         let k = 3;
         if (sArr[start] === '0') k = 1;
+
+        
+
         let temp = 0;
         for (let i = 0; i < k; i++) {
             temp = temp * 10 + Number(sArr[i + start]);
