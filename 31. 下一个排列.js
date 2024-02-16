@@ -14,6 +14,7 @@ var nextPermutation = function(nums) {
             }
             [nums[i], nums[j]] = [nums[j], nums[i]]; // 两数交换，实现变大
         }
+        
         // 如果 i = -1，说明是递减排列，如 3 2 1，没有下一排列，直接翻转为最小排列：1 2 3
         let l = i + 1;           
         let r = nums.length - 1;
