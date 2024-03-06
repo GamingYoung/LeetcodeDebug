@@ -12,7 +12,7 @@ var reconstructQueue = function (people) {
         let k = people[i][1]
         let j = 0
         for (; j < i; j++) {
-            if (k < 0) break
+            if (k == 0&& res[j][0] >= people[i][0]) break
             if (res[j][0] >= people[i][0]) k--
         }
         res.splice(j, 0, [...people[i]])
@@ -20,4 +20,4 @@ var reconstructQueue = function (people) {
     return res
 };
 
-reconstructQueue([[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]])
+reconstructQueue([[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]) 
