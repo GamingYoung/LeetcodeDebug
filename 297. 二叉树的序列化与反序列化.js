@@ -39,6 +39,9 @@ var deserialize = function (data) {
     }
     return build(0)
 };
+
+export default deserialize
+
 const root = new TreeNode(1)
 root.left = new TreeNode(2)
 root.right = new TreeNode(3)
